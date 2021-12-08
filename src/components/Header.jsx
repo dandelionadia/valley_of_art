@@ -4,9 +4,9 @@ import { ReactComponent as Logo } from "../images/logo.svg";
 
 export const Header = () => {
   return (
-    <div className="grid grid-cols-3 items-center justify-items-center mx-auto relative text-sm py-6">
-      <div></div>
-      <div className="z-10">
+    <div className="grid grid-cols-2  lg:grid-cols-3 items-center justify-items-center mx-auto relative text-sm py-6">
+      <div className="hidden lg:block"></div>
+      <div className="z-10 justify-self-start lg:justify-self-auto">
         <Link to="#" className="block px-8 bg-gray-800">
           <Logo className="w-12 h-12 text-white bg-gray-800 fill-current" />
         </Link>
