@@ -11,7 +11,6 @@ module.exports = {
         },
       },
     },
-    container: {},
   },
   variants: {
     extend: {},

@@ -19,7 +19,7 @@ export const Header = () => {
             </Link>
           </li>
           <li>
-            <Link to="#contacnts" className="px-4 bg-gray-800 block">
+            <Link to="#contacts" className="px-4 bg-gray-800 block">
               <div>contacts</div>
             </Link>
           </li>
