@@ -4,7 +4,7 @@ import { DefaultLayout } from "../components/DefaultLayout";
 const IndexPage = () => {
   return (
     <main className="container m-auto">
-      <title>Home Page</title>
+      <title>Portfolio page</title>
       <DefaultLayout></DefaultLayout>
     </main>
   );
