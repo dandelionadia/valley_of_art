@@ -11,14 +11,20 @@ export const Header = () => {
           <Logo className="w-12 h-12 text-white bg-gray-800 fill-current" />
         </Link>
       </div>
-      <div className="uppercase z-10 flex gap-x-5 font-medium tracking-widest text-violet-light text-opacity-60">
-        <Link to="#work" className="px-4 bg-gray-800">
-          <div>my work</div>
-        </Link>
-        <Link to="#contacnts" className="px-4 bg-gray-800">
-          <div>contacts</div>
-        </Link>
-      </div>
+      <nav className="z-10">
+        <ul className="uppercase flex gap-x-5 font-medium tracking-widest text-violet-light text-opacity-60">
+          <li>
+            <Link to="#work" className="px-4 bg-gray-800 block">
+              <div>my work</div>
+            </Link>
+          </li>
+          <li>
+            <Link to="#contacnts" className="px-4 bg-gray-800 block">
+              <div>contacts</div>
+            </Link>
+          </li>
+        </ul>
+      </nav>
       <div className="absolute w-full h-px border-gray-700 border-b inset-y-0 my-auto" />
     </div>
   );
