@@ -8,7 +8,7 @@ const IndexPage = () => {
     <Container>
       <title>Portfolio page</title>
       <DefaultLayout>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-32 my-56">
+        <div className="grid lg:grid-cols-2 gap-x-32 my-56">
           <div>left content</div>
           <div className="grid">
             <p className="text-3xl mb-5">Hi! Nice to meet you!</p>
