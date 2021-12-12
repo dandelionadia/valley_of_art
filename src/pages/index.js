@@ -34,6 +34,29 @@ const IndexPage = () => {
               it can certainly take its time to make a point. It's okay.
             </p>
           </div>
+          <div className="uppercase font-medium tracking-widest relative text-xs text-violet-light text-opacity-60 text-center mb-5">
+            <p className="relative inline-block bg-gray-800 z-10 px-4">
+              Choose category
+            </p>
+            <div className="absolute w-full h-px border-gray-700 border-b inset-y-0 my-auto" />
+          </div>
+          <div className="flex justify-center mb-10">
+            <Link to="#">
+              <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-6 rounded-full w-max">
+                3D
+              </button>
+            </Link>
+            <Link to="#">
+              <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-6 rounded-full w-max">
+                Drawing
+              </button>
+            </Link>
+            <Link to="#">
+              <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-6 rounded-full w-max">
+                Painting
+              </button>
+            </Link>
+          </div>
         </div>
       </DefaultLayout>
     </Container>
