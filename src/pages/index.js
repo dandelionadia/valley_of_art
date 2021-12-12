@@ -57,6 +57,11 @@ const IndexPage = () => {
               </button>
             </Link>
           </div>
+          <div className="container grid md:grid-cols-2 lg:grid-cols-3 gap-10 bg-gray-900 p-10 rounded-2xl bg-opacity-50">
+            <div className="rounded-lg bg-white">1</div>
+            <div className="rounded-lg bg-white">2</div>
+            <div className="rounded-lg bg-white">3</div>
+          </div>
         </div>
       </DefaultLayout>
     </Container>
