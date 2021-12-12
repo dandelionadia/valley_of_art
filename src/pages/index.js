@@ -2,7 +2,6 @@ import * as React from "react";
 import { Link } from "gatsby";
 
 import { DefaultLayout } from "../components/DefaultLayout";
-import { MyLink } from "../components/MyLink";
 import { Container } from "../components/Container";
 
 const IndexPage = () => {
@@ -19,7 +18,12 @@ const IndexPage = () => {
               digital artist. Here I will have a short introductory text and
               perhaps a few other things. Exciting!
             </p>
-            <MyLink>Browse my work</MyLink>
+            <Link
+              to="#work"
+              className="bg-gradient-to-b from-violet to-violet-dark font-bold py-3 px-8 rounded-full inline-block"
+            >
+              Browse my work
+            </Link>
           </div>
         </div>
       </DefaultLayout>
