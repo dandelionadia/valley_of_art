@@ -26,6 +26,15 @@ const IndexPage = () => {
             </Link>
           </div>
         </div>
+        <div className="my-56">
+          <div className="grid mx-auto max-w-lg text-center mb-10">
+            <p className="text-3xl mb-5">My work</p>
+            <p className="text-violet-light">
+              Here is a different subheading text explaining this section. Well,
+              it can certainly take its time to make a point. It's okay.
+            </p>
+          </div>
+        </div>
       </DefaultLayout>
     </Container>
   );
