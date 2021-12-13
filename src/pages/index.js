@@ -44,31 +44,25 @@ const IndexPage = () => {
             <div className="absolute w-full h-px border-gray-700 border-b inset-y-0 my-auto" />
           </div>
           <div className="flex justify-center mb-10">
-            <Link to="#">
-              <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-6 rounded-full w-max">
-                3D
-              </button>
-            </Link>
-            <Link to="#">
-              <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-6 rounded-full w-max">
-                Drawing
-              </button>
-            </Link>
-            <Link to="#">
-              <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-6 rounded-full w-max">
-                Painting
-              </button>
-            </Link>
+            <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-6 rounded-full w-max">
+              3D
+            </button>
+            <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-6 rounded-full w-max">
+              Drawing
+            </button>
+            <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-6 rounded-full w-max">
+              Painting
+            </button>
           </div>
           <div className="container grid md:grid-cols-2 lg:grid-cols-3 gap-10 bg-gray-900 p-10 rounded-2xl bg-opacity-40">
             <div className="shadow-xl rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
-              <img src={Sofa} className="object-cover" />
+              <img src={Sofa} alt="sofa 3D" className="object-cover" />
             </div>
             <div className="shadow-xl rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
-              <img src={Sofa} className="object-cover" />
+              <img src={Sofa} alt="sofa 3D" className="object-cover" />
             </div>
             <div className="shadow-xl rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
-              <img src={Sofa} className="object-cover" />
+              <img src={Sofa} alt="sofa 3D" className="object-cover" />
             </div>
           </div>
         </div>
