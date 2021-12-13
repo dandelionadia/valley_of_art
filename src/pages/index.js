@@ -43,14 +43,14 @@ const IndexPage = () => {
             </p>
             <div className="absolute w-full h-px border-gray-700 border-b inset-y-0 my-auto" />
           </div>
-          <div className="flex justify-center mb-10">
-            <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-6 rounded-full w-max">
+          <div className="flex justify-center gap-4 mb-10">
+            <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-3 rounded-full w-max">
               3D
             </button>
-            <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-6 rounded-full w-max">
+            <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-3 rounded-full w-max">
               Drawing
             </button>
-            <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-6 rounded-full w-max">
+            <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-3 rounded-full w-max">
               Painting
             </button>
           </div>
