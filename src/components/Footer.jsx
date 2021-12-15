@@ -8,8 +8,7 @@ export const Footer = () => {
         © {new Date().getFullYear()} Nadiia Ridko. All rights reserved.
       </div>
       <div className="text-violet-light text-opacity-60 text-xs mb-5">
-        Made by Nadiia and Artem (You're always will have a special place in my
-        hart ❤️).
+        Made by Nadiia and Artem.
       </div>
     </div>
   );
