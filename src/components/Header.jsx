@@ -4,10 +4,10 @@ import { ReactComponent as Logo } from "../images/logo.svg";
 
 export const Header = () => {
   return (
-    <div className="grid grid-cols-2  lg:grid-cols-3 items-center justify-items-center mx-auto relative text-sm py-6">
+    <div className="grid grid-cols-2 lg:grid-cols-3 items-center justify-items-center mx-auto relative text-sm py-6">
       <div className="hidden lg:block"></div>
       <div className="z-10 justify-self-start lg:justify-self-auto">
-        <Link to="#" className="block px-8 bg-gray-800">
+        <Link to="#" className="block pr-8 lg:px-8 bg-gray-800">
           <Logo className="w-12 h-12 text-white bg-gray-800 fill-current" />
         </Link>
       </div>
@@ -15,12 +15,12 @@ export const Header = () => {
         <ul className="uppercase flex gap-x-5 font-medium tracking-widest text-violet-light text-opacity-60">
           <li>
             <Link to="#work" className="px-4 bg-gray-800 block">
-              <div>my work</div>
+              <span>my work</span>
             </Link>
           </li>
           <li>
             <Link to="#contacts" className="px-4 bg-gray-800 block">
-              <div>contacts</div>
+              <span>contacts</span>
             </Link>
           </li>
         </ul>
