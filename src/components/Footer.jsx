@@ -1,15 +1,12 @@
-import * as React from "react";
+import * as React from 'react'
 
 export const Footer = () => {
   return (
-    <div>
-      <div className="w-full h-px border-gray-700 border-t inset-y-0 mb-5" />
-      <div className="text-violet-light text-opacity-60 text-xs mb-5">
+    <footer className="py-10 text-sm text-center border-t border-gray-700 text-violet-light text-opacity-60">
+      <p className="mb-3">
         © {new Date().getFullYear()} Nadiia Ridko. All rights reserved.
-      </div>
-      <div className="text-violet-light text-opacity-60 text-xs mb-5">
-        Made by Nadiia and Artem.
-      </div>
-    </div>
-  );
-};
+      </p>
+      <p>Made with ❤️ by Nadiia and Artem.</p>
+    </footer>
+  )
+}
