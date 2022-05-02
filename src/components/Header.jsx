@@ -1,31 +1,39 @@
-import * as React from "react";
-import { Link } from "gatsby";
-import { ReactComponent as Logo } from "../images/logo.svg";
+import * as React from 'react'
+import { Link } from 'gatsby'
+import { ReactComponent as Logo } from '../images/logo.svg'
+import { Grid } from './Grid'
 
 export const Header = () => {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-3 items-center justify-items-center mx-auto relative text-sm py-6">
-      <div className="hidden lg:block"></div>
-      <div className="z-10 justify-self-start lg:justify-self-auto">
-        <Link to="#" className="block pr-8 lg:px-8 bg-gray-800">
-          <Logo className="w-12 h-12 text-white bg-gray-800 fill-current" />
-        </Link>
-      </div>
-      <nav className="z-10">
-        <ul className="uppercase flex gap-x-5 font-medium tracking-widest text-violet-light text-opacity-60">
-          <li>
-            <Link to="#work" className="px-4 bg-gray-800 block">
-              <span>my work</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="#contacts" className="px-4 bg-gray-800 block">
-              <span>contacts</span>
-            </Link>
-          </li>
-        </ul>
-      </nav>
-      <div className="absolute w-full h-px border-gray-700 border-b inset-y-0 my-auto" />
-    </div>
-  );
-};
+    <header className="relative py-6 mx-auto text-sm">
+      <Grid className="items-center">
+        <div className="z-10 col-span-2 col-start-6 justify-self-center">
+          <Link to="/" className="inline-flex px-4 bg-gray-800 group">
+            <Logo className="w-12 h-12 text-white transition bg-gray-800 fill-current group-hover:text-violet-light" />
+          </Link>
+        </div>
+        <nav className="z-10 col-span-4 col-start-9">
+          <ul className="flex -ml-4 font-medium tracking-widest uppercase gap-x-5">
+            <li>
+              <Link
+                to="/#work"
+                className="block px-4 text-white transition bg-gray-800 hover:text-violet-light"
+              >
+                <span>My work</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/#contacts"
+                className="block px-4 text-white transition bg-gray-800 hover:text-violet-light"
+              >
+                <span>Contacts</span>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </Grid>
+      <div className="absolute inset-y-0 w-full h-px my-auto border-b border-gray-700" />
+    </header>
+  )
+}

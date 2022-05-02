@@ -5,6 +5,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 import { DefaultLayout } from '../components/DefaultLayout'
 import { Container } from '../components/Container'
+import { ButtonLink } from '../components/ButtonLink'
+import { Grid } from '../components/Grid'
 
 const imageItem = {
   hidden: {
@@ -14,6 +16,9 @@ const imageItem = {
   show: {
     opacity: 1,
     scale: 1,
+  },
+  hover: {
+    y: -10,
   },
 }
 
@@ -45,9 +50,11 @@ const IndexPage = ({ data }) => {
     <Container>
       <title>Portfolio page</title>
       <DefaultLayout>
-        <div className="grid my-56 lg:grid-cols-2 gap-x-32">
-          <div className="mb-32 lg:mb-0">left content</div>
-          <div>
+        <Grid className="my-56">
+          <div className="self-center col-span-6 justify-self-center">
+            left content
+          </div>
+          <div className="col-span-6">
             <p className="mb-5 text-6xl font-extrabold">
               Hi!
               <br />
@@ -58,17 +65,14 @@ const IndexPage = ({ data }) => {
               digital artist. Here I will have a short introductory text and
               perhaps a few other things. Exciting!
             </p>
-            <Link
-              to="#work"
-              className="inline-block px-8 py-3 font-bold rounded-full shadow-lg bg-gradient-to-b from-violet to-violet-dark"
-            >
-              Browse my work
-            </Link>
+            <ButtonLink to="#work">Browse my work</ButtonLink>
           </div>
-        </div>
+        </Grid>
         <div className="my-24 lg:my-56">
           <div className="grid max-w-lg mx-auto mb-10 text-center">
-            <p className="mb-5 text-4xl font-extrabold">My work</p>
+            <h2 id="work" className="mb-5 text-4xl font-extrabold">
+              My work
+            </h2>
             <p className="text-lg text-violet-light">
               Here is a different subheading text explaining this section. Well,
               it can certainly take its time to make a point. It's okay.
@@ -97,7 +101,7 @@ const IndexPage = ({ data }) => {
               )
             })}
           </div>
-          <motion.div className="container grid gap-10 p-10 bg-gray-900 md:grid-cols-2 lg:grid-cols-3 rounded-2xl bg-opacity-40">
+          <motion.div className="container grid gap-10 p-10 bg-gray-900 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 rounded-2xl bg-opacity-40">
             <AnimatePresence>
               {images.map((image) => (
                 <motion.article
@@ -107,12 +111,15 @@ const IndexPage = ({ data }) => {
                   initial="hidden"
                   animate="show"
                   exit="hidden"
+                  whileHover="hover"
                   className="overflow-hidden rounded-md shadow-lg"
                 >
-                  <Image
-                    fluid={image.frontmatter.thumbnail.childImageSharp.fluid}
-                    alt={image.frontmatter.title}
-                  />
+                  <Link to={image.slug}>
+                    <Image
+                      fluid={image.frontmatter.thumbnail.childImageSharp.fluid}
+                      alt={image.frontmatter.title}
+                    />
+                  </Link>
                 </motion.article>
               ))}
             </AnimatePresence>
@@ -125,9 +132,13 @@ const IndexPage = ({ data }) => {
 
 export const query = graphql`
   query GetAllImages {
-    images: allMdx(filter: { slug: { glob: "images/*" } }) {
+    images: allMdx(
+      filter: { slug: { glob: "images/*" } }
+      sort: { fields: [frontmatter___date], order: ASC }
+    ) {
       nodes {
         id
+        slug
         frontmatter {
           title
           category
