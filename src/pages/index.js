@@ -1,74 +1,158 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import { graphql, Link } from "gatsby";
+import Image from "gatsby-image";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { DefaultLayout } from "../components/DefaultLayout";
 import { Container } from "../components/Container";
-import Sofa from "../images/sofa_01.png";
+import { ButtonLink } from "../components/ButtonLink";
+import { Grid } from "../components/Grid";
 
-const IndexPage = () => {
+const imageItem = {
+  hidden: {
+    opacity: 0,
+    scale: 0.75,
+  },
+  show: {
+    opacity: 1,
+    scale: 1,
+  },
+  hover: {
+    y: -10,
+  },
+};
+
+const IndexPage = ({ data }) => {
+  const allImages = data.images.nodes;
+  const [activeCategory, setCategory] = React.useState("All");
+  const [images, setImages] = React.useState(allImages);
+  const categories = new Set(["All"]);
+  allImages.forEach((image) => {
+    categories.add(image.frontmatter.category);
+  });
+
+  React.useEffect(() => {
+    const nextImages = allImages.filter((image) => {
+      if (activeCategory === "All") {
+        return true;
+      }
+      return image.frontmatter.category === activeCategory;
+    });
+
+    setImages(nextImages);
+  }, [activeCategory, allImages]);
+
+  const selectCategory = (category) => {
+    setCategory(category);
+  };
+
   return (
     <Container>
       <title>Portfolio page</title>
       <DefaultLayout>
-        <div className="grid lg:grid-cols-2 gap-x-32 my-56">
-          <div className="mb-32 lg:mb-0">left content</div>
-          <div>
-            <p className="text-3xl mb-5 font-extrabold">
-              Hi! Nice to meet you!
+        <Grid className="my-56">
+          <div className="self-center col-span-6 justify-self-center">
+            left content
+          </div>
+          <div className="col-span-6">
+            <p className="mb-5 text-6xl font-extrabold">
+              Hi!
+              <br />
+              Nice to meet you!
             </p>
-            <p className="text-violet-light mb-10">
+            <p className="mb-10 text-lg text-violet-light">
               My name is <span className="text-white">Nadiia</span> and I'm a
               digital artist. Here I will have a short introductory text and
               perhaps a few other things. Exciting!
             </p>
-            <Link
-              to="#work"
-              className="bg-gradient-to-b from-violet to-violet-dark font-bold py-3 px-8 rounded-full inline-block"
-            >
-              Browse my work
-            </Link>
+            <ButtonLink to="#work">Browse my work</ButtonLink>
           </div>
-        </div>
+        </Grid>
         <div className="my-24 lg:my-56">
-          <div className="grid mx-auto max-w-lg text-center mb-10">
-            <p className="text-3xl mb-5 font-extrabold">My work</p>
-            <p className="text-violet-light">
+          <div className="grid max-w-lg mx-auto mb-10 text-center">
+            <h2 id="work" className="mb-5 text-4xl font-extrabold">
+              My work
+            </h2>
+            <p className="text-lg text-violet-light">
               Here is a different subheading text explaining this section. Well,
               it can certainly take its time to make a point. It's okay.
             </p>
           </div>
-          <div className="uppercase font-medium tracking-widest relative text-xs text-violet-light text-opacity-60 text-center mb-5">
-            <p className="relative inline-block bg-gray-800 z-10 px-4">
+          <div className="relative mb-5 text-xs font-medium tracking-widest text-center uppercase text-violet-light text-opacity-60">
+            <p className="relative z-10 inline-block px-4 bg-gray-800">
               Choose category
             </p>
-            <div className="absolute w-full h-px border-gray-700 border-b inset-y-0 my-auto" />
+            <div className="absolute inset-y-0 w-full h-px my-auto border-b border-gray-700" />
           </div>
           <div className="flex justify-center gap-4 mb-10">
-            <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-3 rounded-full w-max">
-              3D
-            </button>
-            <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-3 rounded-full w-max">
-              Drawing
-            </button>
-            <button className="bg-gradient-to-b focus:from-violet focus:to-violet-dark px-3 rounded-full w-max">
-              Painting
-            </button>
+            {Array.from(categories).map((category) => {
+              const isSelected = category === activeCategory;
+
+              return (
+                <button
+                  key={category}
+                  className={`px-4 py-0.5 rounded-full bg-gradient-to-b w-max ${
+                    isSelected ? "from-violet to-violet-dark shadow-md" : ""
+                  }`}
+                  onClick={() => selectCategory(category)}
+                >
+                  {category}
+                </button>
+              );
+            })}
           </div>
-          <div className="container grid md:grid-cols-2 lg:grid-cols-3 gap-10 bg-gray-900 p-10 rounded-2xl bg-opacity-40">
-            <div className="shadow-xl rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
-              <img src={Sofa} alt="sofa 3D" className="object-cover" />
-            </div>
-            <div className="shadow-xl rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
-              <img src={Sofa} alt="sofa 3D" className="object-cover" />
-            </div>
-            <div className="shadow-xl rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
-              <img src={Sofa} alt="sofa 3D" className="object-cover" />
-            </div>
-          </div>
+          <motion.div className="container grid gap-10 p-10 bg-gray-900 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 rounded-2xl bg-opacity-40">
+            <AnimatePresence>
+              {images.map((image) => (
+                <motion.article
+                  key={image.id}
+                  layout
+                  variants={imageItem}
+                  initial="hidden"
+                  animate="show"
+                  exit="hidden"
+                  whileHover="hover"
+                  className="overflow-hidden rounded-md shadow-lg"
+                >
+                  <Link to={image.slug}>
+                    <Image
+                      fluid={image.frontmatter.thumbnail.childImageSharp.fluid}
+                      alt={image.frontmatter.title}
+                    />
+                  </Link>
+                </motion.article>
+              ))}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </DefaultLayout>
     </Container>
   );
 };
+
+export const query = graphql`
+  query GetAllImages {
+    images: allMdx(
+      filter: { slug: { glob: "images/*" } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      nodes {
+        id
+        slug
+        frontmatter {
+          title
+          category
+          thumbnail {
+            childImageSharp {
+              fluid(maxHeight: 500, maxWidth: 500, cropFocus: CENTER) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default IndexPage;
