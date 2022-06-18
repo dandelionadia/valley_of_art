@@ -1,22 +1,22 @@
-import * as React from 'react'
-import { graphql, Link } from 'gatsby'
-import Image from 'gatsby-image'
-import { MDXProvider } from '@mdx-js/react'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { motion } from 'framer-motion'
+import * as React from "react";
+import { graphql, Link } from "gatsby";
+import Image from "gatsby-image";
+import { MDXProvider } from "@mdx-js/react";
+import { MDXRenderer } from "gatsby-plugin-mdx";
+import { motion } from "framer-motion";
 import {
   SiInstagram as InstagramIcon,
   SiArtstation as ArtStationIcon,
-} from 'react-icons/si'
-import { DefaultLayout } from '../components/DefaultLayout'
-import { Container } from '../components/Container'
-import { technologies } from '../components/Technologies'
-import { ButtonLink } from '../components/ButtonLink'
-import { Grid } from '../components/Grid'
+} from "react-icons/si";
+import { DefaultLayout } from "../components/DefaultLayout";
+import { Container } from "../components/Container";
+import { technologies } from "../components/Technologies";
+import { ButtonLink } from "../components/ButtonLink";
+import { Grid } from "../components/Grid";
 
 export default function WorkDetail({ data }) {
-  const { work } = data
-  const { title, links } = work.frontmatter
+  const { work } = data;
+  const { title, links } = work.frontmatter;
 
   return (
     <Container>
@@ -60,8 +60,8 @@ export default function WorkDetail({ data }) {
                   className="font-semibold transition hover:text-white text-violet-light"
                 >
                   {work.frontmatter.category}
-                </Link>{' '}
-                •{' '}
+                </Link>{" "}
+                •{" "}
                 <span className="text-violet-light text-opacity-60">
                   {work.frontmatter.date}
                 </span>
@@ -78,21 +78,21 @@ export default function WorkDetail({ data }) {
                 <h3 className="mb-3 text-lg font-bold">Technologies</h3>
                 <ul className="p-5 space-y-3 text-sm bg-black rounded-md bg-opacity-20">
                   {work.frontmatter.using?.map((tech, index) => {
-                    const { icon: Icon, fill, title } = technologies[tech]
-                    const isLast = index === work.frontmatter.using.length - 1
+                    const { icon: Icon, fill, title } = technologies[tech];
+                    const isLast = index === work.frontmatter.using.length - 1;
 
                     return (
                       <li
-                        className={`flex items-center gap-2 ${
+                        className={`flex items-center gap-3 ${
                           isLast
-                            ? ''
-                            : 'border-b border-violet-light border-opacity-5 pb-3'
+                            ? ""
+                            : "border-b border-violet-light border-opacity-5 pb-3"
                         }`}
                       >
                         <Icon className="w-6 h-6 rounded-sm" style={{ fill }} />
                         <span>{title}</span>
                       </li>
-                    )
+                    );
                   })}
                 </ul>
               </section>
@@ -146,7 +146,7 @@ export default function WorkDetail({ data }) {
         </Grid>
       </DefaultLayout>
     </Container>
-  )
+  );
 }
 
 export const pageQuery = graphql`
@@ -174,4 +174,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
