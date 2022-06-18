@@ -1,12 +1,12 @@
-import * as React from 'react'
-import { graphql, Link } from 'gatsby'
-import Image from 'gatsby-image'
-import { AnimatePresence, motion } from 'framer-motion'
+import * as React from "react";
+import { graphql, Link } from "gatsby";
+import Image from "gatsby-image";
+import { AnimatePresence, motion } from "framer-motion";
 
-import { DefaultLayout } from '../components/DefaultLayout'
-import { Container } from '../components/Container'
-import { ButtonLink } from '../components/ButtonLink'
-import { Grid } from '../components/Grid'
+import { DefaultLayout } from "../components/DefaultLayout";
+import { Container } from "../components/Container";
+import { ButtonLink } from "../components/ButtonLink";
+import { Grid } from "../components/Grid";
 
 const imageItem = {
   hidden: {
@@ -20,31 +20,31 @@ const imageItem = {
   hover: {
     y: -10,
   },
-}
+};
 
 const IndexPage = ({ data }) => {
-  const allImages = data.images.nodes
-  const [activeCategory, setCategory] = React.useState('All')
-  const [images, setImages] = React.useState(allImages)
-  const categories = new Set(['All'])
+  const allImages = data.images.nodes;
+  const [activeCategory, setCategory] = React.useState("All");
+  const [images, setImages] = React.useState(allImages);
+  const categories = new Set(["All"]);
   allImages.forEach((image) => {
-    categories.add(image.frontmatter.category)
-  })
+    categories.add(image.frontmatter.category);
+  });
 
   React.useEffect(() => {
     const nextImages = allImages.filter((image) => {
-      if (activeCategory === 'All') {
-        return true
+      if (activeCategory === "All") {
+        return true;
       }
-      return image.frontmatter.category === activeCategory
-    })
+      return image.frontmatter.category === activeCategory;
+    });
 
-    setImages(nextImages)
-  }, [activeCategory, allImages])
+    setImages(nextImages);
+  }, [activeCategory, allImages]);
 
   const selectCategory = (category) => {
-    setCategory(category)
-  }
+    setCategory(category);
+  };
 
   return (
     <Container>
@@ -86,19 +86,19 @@ const IndexPage = ({ data }) => {
           </div>
           <div className="flex justify-center gap-4 mb-10">
             {Array.from(categories).map((category) => {
-              const isSelected = category === activeCategory
+              const isSelected = category === activeCategory;
 
               return (
                 <button
                   key={category}
                   className={`px-4 py-0.5 rounded-full bg-gradient-to-b w-max ${
-                    isSelected ? 'from-violet to-violet-dark shadow-md' : ''
+                    isSelected ? "from-violet to-violet-dark shadow-md" : ""
                   }`}
                   onClick={() => selectCategory(category)}
                 >
                   {category}
                 </button>
-              )
+              );
             })}
           </div>
           <motion.div className="container grid gap-10 p-10 bg-gray-900 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 rounded-2xl bg-opacity-40">
@@ -127,14 +127,14 @@ const IndexPage = ({ data }) => {
         </div>
       </DefaultLayout>
     </Container>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query GetAllImages {
     images: allMdx(
       filter: { slug: { glob: "images/*" } }
-      sort: { fields: [frontmatter___date], order: ASC }
+      sort: { fields: [frontmatter___date], order: DESC }
     ) {
       nodes {
         id
@@ -153,6 +153,6 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
-export default IndexPage
+export default IndexPage;
